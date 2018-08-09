@@ -1,0 +1,36 @@
+.content{
+    padding-top: 40px;
+    padding-right: 80px;
+    padding-bottom: 40px;
+    padding-left: 80px;
+}
+table{
+    width: 1000px; 
+}
+div.justify{
+    text-align: justify;
+    word-wrap    : break-word;
+    overflow-wrap: break-word;
+}
+
+div.left{
+    text-align: left;
+}
+
+b.left{
+    word-wrap    : break-word;
+    overflow-wrap: break-word;
+}
+
+div.right{
+    text-align: right;
+}
+
+div.center{
+    text-align: center;
+}
+
+div.dashboard
+{
+    overflow-y:scroll;
+}

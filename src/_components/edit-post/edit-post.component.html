@@ -1,0 +1,112 @@
+<div id="container">
+	<app-navbar></app-navbar>
+</div>
+<br>
+<!--delete button and modal-->
+
+<button class="btn btn-default 
+				col-xs-1 col-sm-1 col-md-1 col-lg-1 
+				col-xs-offset-10 col-sm-offset-10 col-md-offset-10 col-lg-offset-10 a" (click)="openModal(template)">
+	<span class="glyphicon glyphicon-trash"></span>
+</button>
+
+<ng-template #template>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">WARNING!</h4>
+		<button type="button" class="close pull-right a" aria-label="Close" (click)="modalRef.hide()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		This post will be deleted. Are you sure that you want to delete this post?
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" (click)="modalRef.hide()">
+			No, continue editing
+		</button>
+
+		<button type="button" class="btn btn-default" (click)="onDeletePost(post)">
+			Yes, delete this post
+		</button>
+
+	</div>
+</ng-template>
+
+<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2
+                      col-xs-8 col-sm-8 col-md-8 col-lg-8">
+	<label>Title:</label>
+	<input type="text" class="form-control" [(ngModel)]="postsService.post.title" [value]="postsService.post.title" #title>
+
+	<label>Subtitle(optional):</label>
+	<input type="text" class="form-control" [(ngModel)]="postsService.post.subtitle" [value]="postsService.post.subtitle" #subtitle>
+
+	<label>Author:</label>
+	<input type="text" class="form-control" [(ngModel)]="postsService.post.author" [value]="postsService.post.uname" readonly>
+
+	<label>Category:</label>
+	<select class='form-control' [(ngModel)]="postsService.post.category" [value]="postsService.post.category" #category>
+		<option>Animals</option>
+		<option>Fitness</option>
+		<option>Food</option>
+		<option>Life</option>
+		<option>Movie</option>
+		<option>Music</option>
+	</select>
+
+	<label>{{isEditAndSubmit ? 'Date Created: ' : 'Date Posted: '}}</label>
+	<input type="text" class="form-control" [(ngModel)]="postsService.post.date" [value]="postsService.post.date" readonly>
+
+	<label>Body:</label>
+	<div class="right">{{postsService.post.body.length}} characters </div>
+	<textarea class="form-control" rows="6" [(ngModel)]="postsService.post.body" [value]="postsService.post.body" #body></textarea>
+
+	<br>
+	<!--when post is approved-->
+	<div *ngIf="!isDelete && !isEditAndSubmit &&!isSuccess">
+		<button type="button" class="btn btn-default bottom" (click)="onGoBack()">
+			Back</button>
+		<button type="button" class="btn btn-default bottom" (click)="onEditPost(title.value, subtitle.value, category.value, body.value)">
+			Edit Post</button>
+	</div>
+	<!--when post pending, returned or draft-->
+	<div *ngIf="!isDelete && isEditAndSubmit &&!isSuccess">
+		<button type="button" class="btn btn-default return" (click)="onGoBack()">
+			Back</button>
+		<button type="button" class="btn btn-default return" (click)="onEditPost(title.value, subtitle.value, category.value, body.value)">
+			Edit Post</button>
+		<button type="button" class="btn btn-default return" (click)="onSubmitPost(title.value, body.value)">
+			Submit Post</button>
+	</div>
+
+	<div *ngIf="isSuccess">
+		<button type="button" class="btn btn-default back" (click)="onGoBack()">
+			Back</button>
+	</div>
+
+	<!--alert -->
+	<div *ngIf="isDelete" class="alert alert-success text-center
+			col-xs-6 col-xs-offset-3
+			col-sm-6 col-sm-offset-3
+			col-md-6 col-md-offset-3
+			col-lg-6 col-lg-offset-3">
+
+		<span class="glyphicon glyphicon-ok-sign"> </span>{{ msg }}</div>
+
+	<div *ngIf="isSuccess && isButtonClicked &&!isDelete" class="alert alert-success text-center
+			col-xs-6 col-xs-offset-3
+			col-sm-6 col-sm-offset-3
+			col-md-6 col-md-offset-3
+			col-lg-6 col-lg-offset-3">
+
+		<span class="glyphicon glyphicon-ok-sign"> </span>{{ msg }}</div>
+
+	<div *ngIf="!isSuccess && isButtonClicked && !isDelete" class="alert alert-danger text-center
+                                col-xs-6 col-xs-offset-3
+                                col-sm-6 col-sm-offset-3
+                                col-md-6 col-md-offset-3
+                                col-lg-6 col-lg-offset-3">
+
+		<span class="glyphicon glyphicon-remove-sign"> </span>{{ msg }}</div>
+
+	<div *ngIf="!isButtonClicked && !isSuccess && !isDelete">
+	</div>

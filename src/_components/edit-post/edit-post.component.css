@@ -1,0 +1,29 @@
+div.right{
+    text-align: right;
+}
+textarea
+{
+    overflow-y:scroll;
+}
+
+button.bottom {width: 50%;}
+button.return {width: 33%;}
+button.back {width: 100%;}
+
+button.a{
+    width: 5%;
+}
+
+.buttons
+{
+    display: inline-flex;
+}
+
+button.right{
+    float:right;
+}   
+
+button.left{
+    float:left;
+}
+

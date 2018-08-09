@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "uname": "jennierubyjane",
+      "pass": "jendeukie",
+      "isAdmin": false,
+      "isLoggedIn": false,
+      "profile": {
+        "fname": "Jennie",
+        "mname": "Beul",
+        "lname": "Kim",
+        "email": "jk@gmail.com",
+        "mobile": 1111,
+        "bdate": "01/16/1996",
+        "interests": [
+          "rapping",
+          "playing with dogs",
+          "unnies"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "uname": "sooyaa__",
+      "pass": "chichu",
+      "isAdmin": false,
+      "isLoggedIn": true,
+      "profile": {
+        "fname": "Jisoo",
+        "mname": "Laek",
+        "lname": "Kim",
+        "email": "kj@gmail.com",
+        "mobile": 2222,
+        "bdate": "01/03/1995",
+        "interests": [
+          "reading",
+          "watching anime",
+          "playing with dalgom",
+          "messing around"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "uname": "roses_are_rosie",
+      "pass": "chaeng",
+      "isAdmin": false,
+      "isLoggedIn": false,
+      "profile": {
+        "fname": "Roseanne",
+        "mname": "Ping",
+        "lname": "Park",
+        "email": "rp@gmail.com",
+        "mobile": 3333,
+        "bdate": "02/11/1997",
+        "interests": [
+          "singing",
+          "playing the guitar",
+          "drawing"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "uname": "lalalalisa_m",
+      "pass": "nallalisa",
+      "isAdmin": false,
+      "isLoggedIn": false,
+      "profile": {
+        "fname": "Lalisa",
+        "mname": "Keu",
+        "lname": "Manoban",
+        "email": "lm@gmail.com",
+        "mobile": 4444,
+        "bdate": "03/27/1997",
+        "interests": [
+          "dancing",
+          "teasing dalgom",
+          "taking photos"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "uname": "hyun",
+      "pass": "123",
+      "isAdmin": true,
+      "isLoggedIn": false,
+      "profile": {
+        "fname": "Joohyun",
+        "mname": "Kang",
+        "lname": "Bae",
+        "email": "jb@gmail.com",
+        "mobile": 5555,
+        "bdate": "03/29/1991",
+        "interests": [
+          "ironing",
+          "doing laundry",
+          "cleaning"
+        ]
+      }
+    }
+  ],
+  "posts": []
+}

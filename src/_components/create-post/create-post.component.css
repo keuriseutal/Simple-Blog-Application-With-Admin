@@ -1,0 +1,14 @@
+textarea
+{
+    overflow-y:scroll;
+}
+
+button {width: 50%;}
+div.right{
+    text-align: right;
+}
+
+button.back {
+    width: 100%;
+
+}

@@ -1,0 +1,67 @@
+
+<div id="container">
+	<app-navbar></app-navbar>
+</div>
+<br>
+<div class="col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2
+                      col-xs-8 col-sm-8 col-md-8 col-lg-8">
+	<label>Title:</label>
+	<input type="text" class="form-control" #title>
+
+	<label>Subtitle(optional):</label>
+	<input type="text" class="form-control" #subtitle>
+
+	<label>Author:</label>
+	<input type="text" class="form-control" [(ngModel)]="usersService.loggedUser.uname" [value]="usersService.loggedUser.uname" readonly>
+
+	<label>Category:</label>
+	<select class='form-control' #category>
+    <option>Animals</option>
+    <option>Fitness</option>
+		<option>Food</option>
+		<option>Life</option>
+    <option>Movie</option>
+    <option>Music</option>
+    </select>
+
+	<label>Date Posted:</label>
+	<input type="text" class="form-control" [(ngModel)]="date" [value]="date" readonly>
+
+	<label>Body:</label>
+	<div class="right">{{bodyCount}} characters </div>
+	<textarea class="form-control" rows="6" (input)="onInput(body.value)" #body></textarea>
+
+	<br>
+	<div *ngIf="!isSuccess || !isButtonClicked">
+		<button type="button" class="btn btn-default" (click)="onAddPost(title.value, subtitle.value, category.value, body.value)">
+				Submit Post</button>
+		<button type="button" class="btn btn-default" (click)="onSaveAsDraft(title.value, subtitle.value, category.value, body.value)">
+				Save as Draft</button>
+
+	</div>
+
+	<div *ngIf="isSuccess && isButtonClicked">
+		<button type="button" class="btn btn-default back" (click)="onGoBack()">
+			Back</button>
+
+	</div>
+	<!--alert -->
+
+	<div *ngIf="isSuccess && isButtonClicked" class="alert alert-success text-center
+                                col-xs-6 col-xs-offset-3
+                                col-sm-6 col-sm-offset-3
+                                col-md-6 col-md-offset-3
+                                col-lg-6 col-lg-offset-3">
+
+		<span class="glyphicon glyphicon-ok-sign"> 			</span>{{ msg }}</div>
+
+	<div *ngIf="!isSuccess && isButtonClicked" class="alert alert-danger text-center
+                                col-xs-6 col-xs-offset-3
+                                col-sm-6 col-sm-offset-3
+                                col-md-6 col-md-offset-3
+                                col-lg-6 col-lg-offset-3">
+
+		<span class="glyphicon glyphicon-remove-sign"> 			</span>{{ msg }}</div>
+
+	<div *ngIf="!isButtonClicked">
+	</div>

@@ -1,0 +1,12 @@
+
+.nav.navbar-nav.navbar-right li a {
+    color: red;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: ghostwhite;
+}
+.nav.navbar-nav.navbar-right li .active {
+    color: black;
+    background-color: red;
+}

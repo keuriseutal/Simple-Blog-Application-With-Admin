@@ -1,0 +1,189 @@
+<div id="container">
+	<app-navbar></app-navbar>
+</div>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="glyphicon glyphicon-filter"></span> Filter by
+
+<!--checkboxes for USER-->
+<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" *ngIf="!usersService.loggedUser.isAdmin">
+
+	<table>
+		<tr>
+			<th>Date &nbsp;&nbsp;
+				<input type="checkbox" [(ngModel)]="selectDate" aria-label="...">
+			</th>
+			<th>Author&nbsp;&nbsp;
+				<input type="checkbox" [(ngModel)]="selectAuthor" aria-label="...">
+			</th>
+			<th>Category&nbsp;&nbsp;
+				<input type="checkbox" [(ngModel)]="selectCategory" aria-label="...">
+			</th>
+			<th>Date Sort&nbsp;&nbsp;
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+					<input type="text" class="form-control" aria-label="..." placeholder="MM/DD/YYYY" #date>
+				</div>
+			</td>
+
+			<td>
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+					<input type="text" class="form-control" aria-label="..." placeholder="Username" #author>
+				</div>
+			</td>
+
+			<td>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<select class='form-control' required #category>
+						<option>Animals</option>
+						<option>Fitness</option>
+						<option>Food</option>
+						<option>Life</option>
+						<option>Movie</option>
+						<option>Music</option>
+					</select>
+				</div>
+			</td>
+			<td>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<select class='form-control' required #dateSort>
+						<option>Latest</option>
+						<option>Earliest</option>
+					</select>
+				</div>
+			</td>
+			<td>
+				<!--sort buttons -->
+				<div class="col-xs-offset-10 col-sm-offset-10 col-md-offset-10 col-lg-10">
+
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn btn-default" (click)="onGetPostsForUser(date.value, author.value, category.value, dateSort.value)">
+							<span *ngIf="titleClicks % 2 != 0" class="glyphicon glyphicon-sort-by-alphabet"></span>
+							<span *ngIf="titleClicks % 2 == 0" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+							Get Post(s)</button>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!--checkboxes for ADMIN-->
+<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" *ngIf="usersService.loggedUser.isAdmin">
+
+	<table>
+		<tr>
+			<th>Date &nbsp;&nbsp;
+				<input type="checkbox" [(ngModel)]="selectDate" aria-label="...">
+			</th>
+			<th>Author&nbsp;&nbsp;
+				<input type="checkbox" [(ngModel)]="selectAuthor" aria-label="...">
+			</th>
+			<th>Post Status&nbsp;&nbsp;
+			</th>
+			<th>Date Sort&nbsp;&nbsp;
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+					<input type="text" class="form-control" aria-label="..." placeholder="MM/DD/YYYY" #date>
+				</div>
+			</td>
+
+			<td>
+				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+					<input type="text" class="form-control" aria-label="..." placeholder="Username" #author>
+				</div>
+			</td>
+
+			<td>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<select class='form-control' required #posts>
+						<option>Pending</option>
+						<option>Approved</option>
+					</select>
+				</div>
+			</td>
+			<td>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<select class='form-control' required #dateSort>
+						<option>Latest</option>
+						<option>Earliest</option>
+					</select>
+				</div>
+			</td>
+			<td>
+				<!--sort buttons -->
+				<div class="col-xs-offset-10 col-sm-offset-10 col-md-offset-10 col-lg-10">
+
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn btn-default" (click)="onGetPostsForAdmin(date.value, author.value, posts.value, dateSort.value)">
+							<span *ngIf="titleClicks % 2 != 0" class="glyphicon glyphicon-sort-by-alphabet"></span>
+							<span *ngIf="titleClicks % 2 == 0" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+							Get Post(s)</button>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+</div>
+
+<br>
+	<div class="center">
+		Showing {{posts.length}} result(s)
+	</div>
+
+<!--display posts -->
+<div *ngIf="posts.length == 0" class="center">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1>No data is available</h1>
+</div>
+<div id="content" class="panel panel-default content" *ngFor="let post of posts ">
+
+	<div class="panel-heading">
+		<div *ngIf="post.author == usersService.loggedUser.uname && usersService.loggedUser.isAdmin == false">
+			<button class="btn btn-default" style="float: right" (click)="onDeletePost(post)">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+			<button class="btn btn-default" style="float: right" (click)="onGoToEditPage(post)">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+		</div>
+		<div *ngIf="usersService.loggedUser.isAdmin == true && isPending">
+			<button class="btn btn-default" style="float: right" (click)="onGoToDetailsPage(post)">
+				<i class="material-icons">
+					info
+					</i>
+			</button>
+		</div>
+		<h4>
+			<b>{{post.author}}</b>
+		</h4>
+
+	</div>
+	<div class="panel-body">
+
+		<h2>
+			<b>{{post.title}}</b>
+		</h2>
+		<div>
+			<i>{{post.subtitle}}</i>
+		</div>
+		<div class="justify">
+			<b>{{post.body}}</b>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="right"> Category: {{post.category}}</div>
+		<div class="right">Date Posted: {{post.date | date}}</div>
+	</div>
+</div>

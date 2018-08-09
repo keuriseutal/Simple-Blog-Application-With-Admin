@@ -1,0 +1,17 @@
+div.justify{
+    text-align: justify;
+    word-wrap    : break-word;
+    overflow-wrap: break-word;
+}
+
+div.center{
+    text-align: center;
+}
+
+div.left{
+    text-align: left;
+}
+
+div.right{
+    text-align: right;
+}
