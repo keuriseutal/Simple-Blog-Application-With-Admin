@@ -82,6 +82,11 @@ export class EditPostComponent implements OnInit {
     //check if required fields are filled correctly
     if (body.length >= 100 && title.length != 0) {
       this.isSuccess = true;
+
+      if(this.postsService.post.status == "Approved"){  //set previous approved post as pending when editing
+        this.postsService.post.status = "Pending";
+      }
+      
       this.postsService.updatePost(this.postsService.post).subscribe((data: Post) => {
         this.postsService.post = data;
       });
@@ -102,8 +107,11 @@ export class EditPostComponent implements OnInit {
   onEditPost(title, subtitle, category, body) {
     this.isButtonClicked = true;
     this.checkPost(title, body);
-    if (this.isSuccess == true)
+    if (this.isSuccess == true && (this.postsService.post.isDraft == true || this.postsService.post.status == "Returned"))
       this.msg = "Your post was updated successfully";
+    else if(this.isSuccess == true){
+      this.msg = "Your post was updated successfully and will be set as Pending";
+    }
   }
 
   onDeletePost(post) {

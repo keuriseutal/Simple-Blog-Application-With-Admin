@@ -27,6 +27,8 @@ const DRAFT_API: string = 'http://localhost:3000/posts?isDraft=true&author=';
 
 const POSTS_API: string = 'http://localhost:3000/posts';
 const POSTS_USER_API: string = 'http://localhost:3000/posts?author=';
+const POSTS_TODAY_API: string = 'http://localhost:3000/posts?status=Approved&date=';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,8 +38,7 @@ export class PostsService {
   posts: Post[];
 
   constructor(private http: Http, private httpClient: HttpClient, private usersService: UsersService) {
-    //this.getPosts("").subscribe(posts => this.posts = posts);
-    //this.getDrafts(this.usersService.loggedUser.uname).subscribe(posts => this.posts = posts);
+   
   }
   
   getPendingPostsOfUser(author: string, filter: string) {
@@ -80,6 +81,11 @@ export class PostsService {
   getOldPosts(author: string): Observable<any> {
     return this.http
     .get(POSTS_USER_API + author).pipe(map((response: Response) => response.json()));
+  }
+
+  getLatestPosts(date: string): Observable<any> {
+    return this.http
+    .get(POSTS_TODAY_API + date).pipe(map((response: Response) => response.json()));
   }
 
   deletePost(post: Post): Observable<any> {

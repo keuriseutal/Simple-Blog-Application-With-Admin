@@ -1,12 +1,11 @@
 <div id="container">
 	<app-navbar></app-navbar>
 </div>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span class="glyphicon glyphicon-filter"></span> Filter by
 
 <!--checkboxes for USER-->
-<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" *ngIf="!usersService.loggedUser.isAdmin">
+<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" *ngIf="loggedUser.isAdmin == false">
 
 	<table>
 		<tr>
@@ -72,7 +71,7 @@
 </div>
 
 <!--checkboxes for ADMIN-->
-<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" *ngIf="usersService.loggedUser.isAdmin">
+<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1" *ngIf="loggedUser.isAdmin">
 
 	<table>
 		<tr>
@@ -134,9 +133,9 @@
 </div>
 
 <br>
-	<div class="center">
-		Showing {{posts.length}} result(s)
-	</div>
+<div class="center">
+	Showing {{posts.length}} result(s)
+</div>
 
 <!--display posts -->
 <div *ngIf="posts.length == 0" class="center">
@@ -150,24 +149,26 @@
 <div id="content" class="panel panel-default content" *ngFor="let post of posts ">
 
 	<div class="panel-heading">
-		<div *ngIf="post.author == usersService.loggedUser.uname && usersService.loggedUser.isAdmin == false">
-			<button class="btn btn-default" style="float: right" (click)="onDeletePost(post)">
-				<span class="glyphicon glyphicon-trash"></span>
-			</button>
+		<div *ngIf="post.author == loggedUser.uname && loggedUser.isAdmin == false">
 			<button class="btn btn-default" style="float: right" (click)="onGoToEditPage(post)">
-				<span class="glyphicon glyphicon-pencil"></span>
+				<i class="material-icons">
+					info
+				</i>
 			</button>
 		</div>
-		<div *ngIf="usersService.loggedUser.isAdmin == true && isPending">
+		<div *ngIf="loggedUser.isAdmin == true && isPending">
 			<button class="btn btn-default" style="float: right" (click)="onGoToDetailsPage(post)">
 				<i class="material-icons">
 					info
-					</i>
+				</i>
 			</button>
 		</div>
 		<h4>
-			<b>{{post.author}}</b>
+			<span *ngIf="post.date == date" class="label label-success">New</span>
+			<b>&nbsp;&nbsp;&nbsp;{{post.author}}</b>
+
 		</h4>
+
 
 	</div>
 	<div class="panel-body">
@@ -183,7 +184,27 @@
 		</div>
 	</div>
 	<div class="panel-footer">
-		<div class="right"> Category: {{post.category}}</div>
+		<div class="right"> Category: {{post.category}}&nbsp;&nbsp;
+			<i class="material-icons" *ngIf="post.category == 'Animals'">
+				pets
+			</i>
+			<i class="material-icons" *ngIf="post.category == 'Fitness'">
+				fitness_center
+			</i>
+			<i class="material-icons" *ngIf="post.category == 'Food'">
+				fastfood
+			</i>
+			<i class="material-icons" *ngIf="post.category == 'Life'">
+				nature_people
+			</i>
+			<i class="material-icons" *ngIf="post.category == 'Movie'">
+				movie
+			</i>
+			<i class="material-icons" *ngIf="post.category == 'Music'">
+				music_note
+			</i>
+
+		</div>
 		<div class="right">Date Posted: {{post.date | date}}</div>
 	</div>
 </div>

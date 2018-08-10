@@ -2,12 +2,45 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
 			<ul class="nav navbar-nav navbar-right">
-				<li ><a routerLink="/dashboard" routerLinkActive="active"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
-				<li><a routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-				<li *ngIf="!isAdmin"><a routerLink="/create-post" routerLinkActive="active"><span class="glyphicon glyphicon-plus"></span> Create Post</a></li>
-				<li *ngIf="!isAdmin"><a routerLink="/pending-post" routerLinkActive="active"><span class="glyphicon glyphicon-hourglass"></span> Pending Posts</a></li>
-				<li *ngIf="!isAdmin"><a routerLink="/drafts" routerLinkActive="active"><span class="glyphicon glyphicon-file"></span> Drafts</a></li>
-				<li><a (click)="onLogOut()"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+				<li ><a routerLink="/dashboard" 
+					routerLinkActive="active">
+					<span class="glyphicon glyphicon-home"></span>
+					Dashboard
+					<span class="badge">
+						{{ isAdmin ? pendingPosts.length : latestPosts.length }}
+					</span>  
+					</a>
+				</li>
+				<li><a routerLink="/profile" 
+					routerLinkActive="active">
+					<span class="glyphicon glyphicon-user">
+					</span> Profile</a>
+				</li>
+				<li *ngIf="!isAdmin"><a routerLink="/create-post" 
+					routerLinkActive="active"><span class="glyphicon glyphicon-plus">
+					</span> Create Post</a>
+				</li>
+				<li *ngIf="!isAdmin"><a routerLink="/pending-post" 
+					routerLinkActive="active">
+					<span class="glyphicon glyphicon-hourglass"></span>
+					Pending Posts
+					<span class="badge">
+						{{ userPendingPosts.length }}		
+					</span> 
+					</a>
+				</li>
+				<li *ngIf="!isAdmin"><a routerLink="/drafts" 
+					routerLinkActive="active">
+					<span class="glyphicon glyphicon-file"></span>
+					Drafts
+					<span class="badge">
+						{{ drafts.length }}
+					</span> 
+					</a>
+				</li>
+				<li><a (click)="onLogOut()"><span class="glyphicon glyphicon-off">
+					</span>Logout</a>
+				</li>
 			</ul>
 		</div>
 	</nav>

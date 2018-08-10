@@ -12,7 +12,6 @@ import { EditPostComponent } from '../../_components/edit-post/edit-post.compone
 import { DraftsComponent } from '../../_components/drafts/drafts.component';
 import { PendingPostComponent } from '../../_components/pending-post/pending-post.component';
 import { ViewPostComponent } from '../../_components/view-post/view-post.component';
-import { NavbarViewerComponent } from '../../_components/navbar-viewer/navbar-viewer.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -27,8 +26,7 @@ const routes: Routes = [
   { path: 'edit-post', component: EditPostComponent },
   { path: 'view-post', component: ViewPostComponent },
   { path: 'pending-post', component: PendingPostComponent },
-  { path: 'drafts', component: DraftsComponent },
-  { path: 'home', component: NavbarViewerComponent }
+  { path: 'drafts', component: DraftsComponent }
 ];
 
 @NgModule({

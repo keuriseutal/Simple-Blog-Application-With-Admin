@@ -33,7 +33,6 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.usersService.loggedUser);
     this.author = this.usersService.loggedUser.uname;
 
     this.usersService
@@ -44,7 +43,6 @@ export class CreatePostComponent implements OnInit {
 
     //this.author = this.loggedUser.uname;
 
-    console.log(this.loggedUser);
     this.date = this.getDate();
   }
 

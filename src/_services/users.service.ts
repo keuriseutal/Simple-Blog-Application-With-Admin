@@ -26,15 +26,15 @@ export class UsersService implements OnInit {
   loggedUser: User;
   users: User[];
 
-  constructor(private http: Http, private httpClient: HttpClient) {
-     this.getUsers().subscribe(users => this.users = users);
-    //this.getLoggedUser().subscribe(loggedUser => this.loggedUser = loggedUser);
-  }
+  constructor(private http: Http,
+    private httpClient: HttpClient) { }
 
   ngOnInit() {
-
   }
-
+  /*for reading data 
+  this.localStorage.getItem<User>('user').subscribe((user) => {
+  user.firstName; });
+  */
   getUsers(): Observable<User[]> {
     return this.http
       .get(USER_API)

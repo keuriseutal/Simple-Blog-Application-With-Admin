@@ -58,14 +58,10 @@ export class ForgotPasswordComponent implements OnInit {
           this.password = this.users[i].pass;
           this.errMsg = " ";
           this.isCorrect = true;
-          //this.router.navigate(['/','print-password']);
-          console.log('isUser' + this.users[i].uname + this.users[i].profile.email + this.users[i].profile.mobile);
-          console.log(this.password);
           break;
         }else if((this.users[i].uname != uname) || (this.users[i].profile.email != email) || (this.users[i].profile.mobile != mobile)){
           this.isCorrect = false;
           this.errMsg = "The data that you've entered does not exist";
-         // console.log('!isUser' + this.users[i].uname + this.users[i].profile.email + this.users[i].profile.mobile);
           continue;
         }
       }//end loop

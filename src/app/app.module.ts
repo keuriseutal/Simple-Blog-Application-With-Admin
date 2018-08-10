@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing/app-routing.module';
 import { FormsModule } from '@angular/forms';
+
 //components
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../_components/login/login.component';
@@ -16,12 +17,10 @@ import { CreatePostComponent } from '../_components/create-post/create-post.comp
 import { EditPostComponent } from '../_components/edit-post/edit-post.component';
 import { PendingPostComponent } from '../_components/pending-post/pending-post.component';
 import { ViewPostComponent } from '../_components/view-post/view-post.component';
-import { NavbarViewerComponent } from '../_components/navbar-viewer/navbar-viewer.component';
 
 //services
 import { UsersService } from '../_services/users.service';
 import { PostsService } from '../_services/posts.service';
-import { ProfileService } from '../_services/profile.service';
 
 //styles
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -38,8 +37,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     EditPostComponent,
     NavbarComponent,
     PendingPostComponent,
-    ViewPostComponent,
-    NavbarViewerComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +47,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ModalModule.forRoot(),
     FormsModule
   ],
-  providers: [UsersService, PostsService, ProfileService],
+  providers: [UsersService, PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

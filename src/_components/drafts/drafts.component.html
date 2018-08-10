@@ -22,14 +22,10 @@
 
 		<div class="panel-heading">
 			<div>
-				<button class="btn btn-default" style="float: right" (click)="onDiscard(post)">
-					<span class="glyphicon glyphicon-trash"></span>
-				</button>
 				<button class="btn btn-default" style="float: right" (click)="onGoToEditPage(post)">
-					<span class="glyphicon glyphicon-pencil"></span>
-				</button>
-				<button class="btn btn-default" style="float: right" (click)="onPost(post)">
-					<span class="glyphicon glyphicon-ok"></span>
+					<i class="material-icons">
+						info
+					</i>
 				</button>
 			</div>
 			<h4>
@@ -50,7 +46,28 @@
 			</div>
 		</div>
 		<div class="panel-footer">
-			<div class="right"> Category: {{post.category}}</div>
+				<div class="right"> Category:
+						{{post.category}}&nbsp;&nbsp;
+						<i class="material-icons" *ngIf="post.category == 'Animals'">
+							pets
+						</i>
+						<i class="material-icons" *ngIf="post.category == 'Fitness'">
+							fitness_center
+						</i>
+						<i class="material-icons" *ngIf="post.category == 'Food'">
+							fastfood
+						</i>
+						<i class="material-icons" *ngIf="post.category == 'Life'">
+							nature_people
+						</i>
+						<i class="material-icons" *ngIf="post.category == 'Movie'">
+							movie
+						</i>
+						<i class="material-icons" *ngIf="post.category == 'Music'">
+							music_note
+						</i>
+						
+					</div>
 			<div class="right">Date Created: {{post.date | date}}</div>
 		</div>
 	</div>
