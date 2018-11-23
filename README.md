@@ -1,5 +1,25 @@
 # SimpleBlogApplication
 
+# Preview (Regular User)
+
+![1](1.PNG)
+
+![2](2.PNG)
+
+![3](3.PNG)
+
+![4](4.PNG)
+
+![5](5.PNG)
+
+![6](6.PNG)
+
+# Preview (Admin)
+
+![2a](2a.PNG)
+
+![3a](3a.PNG)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
